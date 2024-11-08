@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Tempo Juntos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #800020;
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #contador {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .contador-item {
+            background-color: #000;
+            padding: 10px;
+            margin: 10px;
+            font-size: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            width: 100px;
+        }
+        .contador-item div {
+            font-size: 1rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .sub-contador {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .carousel-container {
+            width: 60%;
+            max-width: 900px;
+            height: 500px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-container img {
+            position: absolute;
+            width: 1500px;
+            height: 1500px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .carousel-container img.active {
+            opacity: 1;
+        }
+        iframe {
+            border-radius: 12px;
+            width: 300px;
+            height: 80px;
+        }
+        .title {
+            font-family: 'Allura', cursive;
+            font-size: 2.5rem;
+            font-style: italic;
+            margin-top: 20px;
+            text-align: center;
+        }
+        /* Emojis caindo de forma aleatória */
+        .emoji {
+            position: absolute;
+            font-size: 7vw;
+            animation: fall 3s infinite;
+            top: -10%;
+            opacity: 1;
+        }
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Estamos juntos há:</h1>
+    <div id="contador">
+        <div class="contador-item">
+            <div id="anos">00</div>
+            <div>Ano</div>
+        </div>
+        <div class="contador-item">
+            <div id="meses">00</div>
+            <div>Mês</div>
+        </div>
+        <div class="contador-item">
+            <div id="dias">00</div>
+            <div>Dia</div>
+        </div>
+    </div>
+    <div class="sub-contador">
+        <div class="contador-item">
+            <div id="horas">00</div>
+            <div>Hora</div>
+        </div>
+        <div class="contador-item">
+            <div id="minutos">00</div>
+            <div>Minuto</div>
+        </div>
+        <div class="contador-item">
+            <div id="segundos">00</div>
+            <div>Segundo</div>
+        </div>
+    </div>
+    <div class="carousel-container">
+        <img src="Artboard 1TESTE1.jpg" class="active" alt="Imagem 1">
+        <img src="Artboard 1TESTE2.jpg" alt="Imagem 2">
+        <img src="Artboard 1TESTE3.jpg" alt="Imagem 3">
+        <img src="Artboard 1TESTE4.jpg" alt="Imagem 4">
+        <img src="Artboard 1TESTE5.jpg" alt="Imagem 5">
+        <img src="Artboard 1TESTE6.jpg" alt="Imagem 6">
+        <img src="Artboard 1TESTE7.jpg" alt="Imagem 7">
+        <img src="Artboard 1TESTE8.jpg" alt="Imagem 8">
+    </div>
+    <div class="title">José Manuel & Tatiana Hillary</div>
+    <iframe src="https://open.spotify.com/embed/track/1KAYVY98CIiuNibVb2i1at?utm_source=generator"></iframe>
+    
+    <!-- Emojis caindo de forma aleatória -->
+    <script>
+        function getRandomPosition() {
+            return Math.random() * 100; // Posição aleatória entre 0% e 100% da largura da tela
+        }
+
+        function createRandomEmoji() {
+            const emojis = ['😍', '🥰', '😘'];
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.style.left = getRandomPosition() + '%'; // Posição horizontal aleatória
+            emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            document.body.appendChild(emoji);
+
+            // Definir um tempo de animação aleatório para o emoji
+            emoji.style.animationDuration = (Math.random() * 2 + 2) + 's'; // Tempo de animação entre 2 e 4 segundos
+
+            // Remover o emoji após a animação
+            setTimeout(() => {
+                emoji.remove();
+            }, 4000); // Tempo suficiente para a animação
+        }
+
+        setInterval(createRandomEmoji, 300); // Criar um emoji aleatório a cada 300ms
+    </script>
+
+    <script>
+        function atualizarContador() {
+            const inicioRelacao = new Date("2023-12-20T00:00:00");
+            const agora = new Date();
+            const diferenca = agora - inicioRelacao;
+
+            const anos = Math.floor(diferenca / (1000 * 60 * 60 * 24 * 365.25));
+            const meses = Math.floor((diferenca % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30));
+            const dias = Math.floor((diferenca % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+            document.getElementById("anos").textContent = anos.toString().padStart(2, '0');
+            document.getElementById("meses").textContent = meses.toString().padStart(2, '0');
+            document.getElementById("dias").textContent = dias.toString().padStart(2, '0');
+            document.getElementById("horas").textContent = horas.toString().padStart(2, '0');
+            document.getElementById("minutos").textContent = minutos.toString().padStart(2, '0');
+            document.getElementById("segundos").textContent = segundos.toString().padStart(2, '0');
+        }
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
+
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel-container img');
+        const totalImages = images.length;
+
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % totalImages;
+            images[currentIndex].classList.add('active');
+        }
+        setInterval(showNextImage, 3000);
+    </script>
+</body>
+</html>
